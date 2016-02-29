@@ -4432,6 +4432,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default {
   background-color: purple;
   /*border-color: #white;*/
+  overflow: hidden;
 }
 .navbar-default .navbar-brand {
   color: #777;
