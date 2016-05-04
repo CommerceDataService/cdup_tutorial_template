@@ -1,634 +1,191 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="shortcut icon" href="https://www.commerce.gov/sites/all/themes/doc/doc_theme/favicon.ico" type="image/vnd.microsoft.icon" />
-    <title> TEMPLATE_TITLE </title>
+    <title>Template Site</title>
 
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=320, height=device-height, target-densitydpi=medium-dpi" />
+    <!-- Javascript -->
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="js/parallax.js"></script><!-- Parallax Banner -->
+    <script src="js/navbar.hide.js"></script><!-- Hide Navbar -->
+    <script src="js/scroll.js"></script><!-- Affix Sidebar/Scroll Functions -->
 
-        <link rel="stylesheet" href="css/creative.css" type="text/css">
-        <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/cdup_tutorial.css"><!-- Custom Theme for know.data tutorial -->
 
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="js/parallax.js"></script>
-        <script src="http://d3js.org/d3.v3.min.js"></script>
+    <!-- Syntax Highlighting -->
+    <!-- Support for the following languages: -->
+    <!-- Apache, Bash, C#, C++, CSS, CoffeeScript, Device Tree, Diff, HTML, XML, HTTP, Ini, JSON, Java, JavaScript, Makefile, Markdown, Nginx, Objective-C, PHP, Perl, Python, Ruby, SQL, Fortran, Julia, Lisp, Lua, Mathematica, Matlab, Python-Profile, R, Scilab, Scala, Stata, Swift -->
+    <link rel="stylesheet" type="text/css" href="css/styles/github.css"><!-- Style for highlighting Code: Default to Github -->
+    <script src="js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script><!-- Activate Code Highlighting -->
 
-        <meta charset="utf-8">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="generator" content="pandoc"/>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-        <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
-        <style type="text/css">
-          pre:not([class]) {
-            background-color: white;
-          }
-        </style>
-        <script type="text/javascript">
-        if (window.hljs && document.readyState && document.readyState === "complete") {
-           window.setTimeout(function() {
-              hljs.initHighlighting();
-           }, 0);
-        }
-        </script>
-
-        <script type="text/javascript">
-            window.addEventListener("hashchange", function() { scrollBy(0, -50) })
-        </script>
-
-        <style>
-            
-        html, body. div{
-          width: auto !important;
-          overflow-x: hidden !important;
-        }
-
-        hr {
-            width: 100%;
-            height: 8px;
-            margin-left: auto;
-            margin-right: auto;
-            background-color:white;
-            color:white;
-            border: 0 none;
-            }
-          #btn {
-            background: purple;
-            /*background: #d93434;*/
-            background-image: -webkit-linear-gradient(top, purple, #820a0a);
-            background-image: -moz-linear-gradient(top, purple, #820a0a);
-            background-image: -ms-linear-gradient(top, purple, #820a0a);
-            background-image: -o-linear-gradient(top, purple, #820a0a);
-            background-image: linear-gradient(to bottom, purple, #820a0a);
-            -webkit-border-radius: 4;
-            -moz-border-radius: 4;
-            border-radius: 4px;
-            font-family: Arial;
-            color: #ffffff;
-            font-size: 12px;
-            padding: 10px 20px 10px 20px;
-            text-decoration: none;
-          }
-
-          #btn:hover {
-            background: #6387cf;
-            background-image: -webkit-linear-gradient(top, #6387cf, #3498db);
-            background-image: -moz-linear-gradient(top, #6387cf, #3498db);
-            background-image: -ms-linear-gradient(top, #6387cf, #3498db);
-            background-image: -o-linear-gradient(top, #6387cf, #3498db);
-            background-image: linear-gradient(to bottom, #6387cf, #3498db);
-            text-decoration: none;
-          }
-
-          .main-container {
-            max-width: 940px;
-            margin-left: auto;
-            margin-right: auto;
-          }
-          code {
-            color: inherit;
-            background-color: rgba(0, 0, 0, 0.04);
-          }
-          img {
-            max-width:100%;
-            height: auto;
-          }
-          #woot{
-            background-color: white;
-            opacity: 0.9;
-            color:purple;
-            padding: 10px;
-            border-radius: 10px;
-            font-family: Helvetica;
-          }
-          #weight{
-            font-weight: bold;
-          }
-            .main-container {
-              max-width: 940px;
-              margin-left: auto;
-              margin-right: auto;
-            }
-            code {
-              color: inherit;
-              background-color: rgba(0, 0, 0, 0.04);
-            }
-            img {
-              max-width:100%;
-              height: auto;
-            }
-        </style>
-    </head>
-
+</head>
 <body>
-
-
-<!--NavBar-->
-     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <nav id='navbar' class="nav navbar-default navbar-fixed-top navbar-border"><!-- Navbar -->
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-links" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="https://www.commerce.gov/dataservice/"><img style="max-width:100%; max-height:100%;" src="img/logo.png"></a>
-            </div>
+                <a class="navbar-brand navbar-color" href="#"><strong>know.data</strong></a>
+            </div> <!-- navbar-header -->
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a class="page-scroll" href="#top">Home</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#story">Visuals</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#code">Code</a>
-                    </li>
-
+            <div class="collapse navbar-collapse" id="collapse-links">
+                <ul class="nav navbar-nav navbar-color">
+                    <li class="disclaimer"><a href="#">a project by Commerce Data Service</a></li>
                 </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
+                <ul class="nav navbar-nav navbar-right navbar-color">
+                    <li><a href="#">Index</a></li>
+                    <li><a href="#">Sponsor</a></li>
+                    <li><a href="#">Partner</a></li>
+                </ul>
+            </div><!-- navbar-collapse -->
+        </div><!-- container-fluid -->
     </nav>
 
-<!--Cover-->
-
-    <section class="scroll backie datacorps " id="top">
-        <div class="header-content">
-            <div class="header-content-inner" >
-                <h2 style="position:absolute;left:15%; top:50%;text-align:left;">
-                    <div id="woot">
-                        <span style="font-size:150%;line-height:1.3;" >
-                          <strong>TEMPLATE_TITLE<br>TEMPLATE_TITLE_1<br>TEMPLATE_TITLE_2</strong><br></span>
-
-                          <a id = "btn" href="https://github.com/CommerceDataService/TEMPLATE_REPO/zipball/master"> <strong>ZIP File</strong></a>
-                          <a id = "btn" href="https://github.com/CommerceDataService/TEMPLATE_REPO/tarball/master"> <strong>TAR Ball</strong></a>
-                          <a id = "btn" href="https://github.com/CommerceDataService/TEMPLATE_REPO"><strong>GitHub</strong></a>
-
-                          <p><br>Use TEMPLATE_LANG_1, TEMPLATE_LANG_2,<br>and TEMPLATE_PCK_1, TEMPLATE_PCK_2 <br> to visualize TEMPLATE_SUBJECT</p>
-                      </div>
-                </h2>
+    <!-- Banner -->
+    <section class="scroll">
+        <div class="scroll-overlay">
+            <div class="title">
+                <h3><strong>TITLE OF TUTORIAL</strong></h3>
+                <h4>SUBTITLE OF MY TUTORIAL THAT ELABORATES MORE</h4>
+                <h5><strong>by AUTHORS</strong></h5>
+                <h6>DATE</h6>
             </div>
         </div>
-
     </section>
 
-
-
-
-    <body>
-
-
-
-<!--header-->
-<div id='story' class="container-fluid main-container" style="background-color:white;">
-    <br>
-    <div class='container'>
-    <br><br>
-        <div class="row">
-            <div class="col-lg-2"style="font-family:Helvetica;text-align:left;background-color:white; border-style: solid;
-                border-color:lightgrey;border-radius:5px;border-width: 2px;">
-                <p><span style="font-size:120%;color:purple;">Credits</span>
-                    <small><br><strong>TEMPLATE_OFFICE</strong>
-                    <ul>
-                        <li>TEMPLATE_AUTHOR</li>
+    <!-- Body -->
+    <section>
+        <div class="container-fluid content">
+            <div class="row">
+                <div id='content' class="col-lg-10 col-md-10"><!-- Content -->
+                <section id='intro'>
+                    <h3><strong>INTRODUCTION:</strong></h3>
+                    <p>DIY meggings typewriter semiotics, humblebrag authentic affogato celiac tousled mumblecore kogi. Mustache bicycle rights brunch, chillwave kombucha irony cred etsy vice waistcoat literally squid four dollar toast. Intelligentsia gluten-free before they sold out godard cold-pressed, +1 ramps try-hard. Selvage master cleanse flannel blog, disrupt asymmetrical tote bag man braid next level. Keytar authentic heirloom, kale chips sartorial before they sold out biodiesel cliche artisan direct trade. Lomo 90's typewriter VHS pour-over, lo-fi franzen distillery craft beer literally forage meggings. Humblebrag asymmetrical try-hard, tote bag mlkshk squid DIY iPhone yr hashtag fanny pack semiotics franzen readymade.</p>
+                    <p>DIY meggings typewriter semiotics, humblebrag authentic affogato celiac tousled mumblecore kogi. Mustache bicycle rights brunch, chillwave kombucha irony cred etsy vice waistcoat literally squid four dollar toast. Intelligentsia gluten-free before they sold out godard cold-pressed, +1 ramps try-hard. Selvage master cleanse flannel blog, disrupt asymmetrical tote bag man braid next level. Keytar authentic heirloom, kale chips sartorial before they sold out biodiesel cliche artisan direct trade. Lomo 90's typewriter VHS pour-over, lo-fi franzen distillery craft beer literally forage meggings. Humblebrag asymmetrical try-hard, tote bag mlkshk squid DIY iPhone yr hashtag fanny pack semiotics franzen readymade.</p>
+                    <h3 id='narrative_1'><strong>NARRATIVE_1</strong></h3>
+                    <p>Scenester 8-bit gluten-free, selfies man braid you probably haven't heard of them pop-up single-origin coffee microdosing beard. Wayfarers food truck bicycle rights, ramps roof party 3 wolf moon fingerstache neutra DIY hoodie kickstarter vice. Church-key dreamcatcher drinking vinegar, scenester fap actually mixtape fingerstache art party quinoa offal occupy irony bitters. Hoodie normcore green juice heirloom polaroid. 8-bit kogi fashion axe ethical bushwick slow-carb kickstarter tattooed. Keytar bitters single-origin coffee VHS drinking vinegar umami. Ennui polaroid pug kale chips, wayfarers skateboard fap church-key sriracha gentrify gochujang.</p>
+                    <img class="viz-img" src="img/TEMPLATE_VIZ_1.jpg">
+                    <p>Truffaut four dollar toast schlitz mlkshk meh single-origin coffee. IPhone quinoa banh mi, mlkshk cornhole shoreditch 8-bit art party fap waistcoat lumbersexual pour-over venmo brooklyn. Gastropub brooklyn kickstarter selfies, quinoa 90's mixtape ramps everyday carry occupy neutra humblebrag swag. Pabst mixtape church-key, sustainable yr single-origin coffee occupy portland asymmetrical plaid ennui. Locavore cray green juice marfa portland photo booth everyday carry freegan tousled synth, leggings brooklyn 90's. Narwhal literally fixie drinking vinegar gluten-free, roof party heirloom blog kinfolk. Narwhal fap keytar, health goth tilde church-key squid shabby chic chicharrones gochujang tote bag vinyl kinfolk.</p>
+                    <!-- Code Snippet: Python -->
+                    <pre><code class="python">rootdir = './tracts/'
+us_features = []
+empty_tracts = []
+for subdir, dirs, files in os.walk(rootdir):
+    for f in tqdm(files):
+        if f[-3:] == 'zip':
+            features = []
+            with fiona.open('/', vfs='zip://'+os.path.join(subdir, f), layer=0) as src:
+                for feat in src:
+                    feat['properties']['x'] = round(asShape(feat['geometry']).centroid.x,4)
+                    feat['properties']['y'] = round(asShape(feat['geometry']).centroid.y,4)
+                    tract = feat['properties']['GEO_ID'][9:]
+                    try:
+                        feat['properties']['g'] = custom[tract]['gname']                           
+                        for popme in [u'NAME', u'LSAD', u'STATE', u'COUNTY', u'TRACT', u'CENSUSAREA', u'GEO_ID']:
+                            feat['properties'].pop(popme)
+                        for rank in variables:
+                            feat['properties']['s'+rank] = custom[tract]['score_'+rank]
+                        feat['properties']['r'] = custom[tract]['final_score']
+                        try:
+                            feat['properties']['f'] = round(compl_append[tract],0)
+                        except KeyError:
+                            feat['properties']['f'] = 0
+                        features.append(feat)
+                        us_features.append(feat)
+                    except KeyError:
+                        empty_tracts.append(tract)
+            rank_map = {
+                'type':'FeatureCollection',
+                'features':features,
+                'crs':{'init': u'epsg:4269'}}
+            with open('./tracts/%s.geojson'%f, 'wb') as fl:
+                json.dump(rank_map, fl)</code></pre>
+                    <p>Asymmetrical lomo 3 wolf moon paleo forage, mixtape fashion axe shoreditch squid pour-over. Yuccie street art you probably haven't heard of them, fixie celiac austin normcore organic 3 wolf moon roof party offal bespoke bicycle rights. Banh mi lomo gochujang tofu, microdosing organic paleo celiac vinyl swag synth cred shoreditch typewriter. Seitan try-hard blog disrupt pinterest. Viral man braid distillery typewriter shabby chic flexitarian ramps. Everyday carry next level church-key fanny pack, kale chips forage twee selvage locavore brunch. Lo-fi letterpress yr pork belly, fixie banjo pop-up asymmetrical intelligentsia YOLO tofu mustache quinoa.</p>
+                    <p>Lumbersexual DIY thundercats kogi beard trust fund, blog everyday carry shabby chic jean shorts salvia sartorial. Cred pork belly hashtag meh helvetica, scenester cornhole photo booth meditation beard roof party pop-up thundercats. Yr wolf fashion axe blue bottle asymmetrical crucifix pop-up, plaid wayfarers. Pug gentrify selfies tote bag, whatever crucifix bespoke try-hard XOXO heirloom vinyl everyday carry flannel pinterest. Bespoke butcher leggings, you probably haven't heard of them bitters craft beer pickled crucifix chia post-ironic. Yuccie plaid you probably haven't heard of them, hoodie kinfolk pabst typewriter four dollar toast. Chambray echo park kinfolk 8-bit microdosing, pork belly shabby chic art party iPhone thundercats vegan you probably haven't heard of them.</p>
+                    <img class="viz-img" src="img/TEMPLATE_VIZ_2.png">
+                </section>
+                <section id="narrative_2">
+                    <h3><strong>NARRATIVE_2</strong></h3>
+                    <p>Hella cold-pressed thundercats, art party messenger bag man bun health goth chartreuse schlitz lomo helvetica marfa gluten-free. DIY keffiyeh sriracha bushwick taxidermy forage, cardigan keytar fanny pack. Mustache banjo narwhal ramps. Distillery pork belly brooklyn, butcher pickled scenester meggings church-key 3 wolf moon hammock hella mustache cray. Trust fund hoodie selfies, tousled pabst selvage disrupt 90's. Vice banjo post-ironic, swag raw denim retro etsy kitsch single-origin coffee cronut fingerstache meggings marfa. Mlkshk forage aesthetic banjo vinyl, occupy tousled VHS flannel brooklyn bespoke offal.</p>
+                    <img class="viz-img" src="img/TEMPLATE_VIZ_3.png">
+                    <p>Helvetica kogi hashtag affogato food truck, gentrify selfies listicle truffaut migas tattooed. Kale chips echo park tousled, bicycle rights waistcoat godard schlitz 3 wolf moon tote bag church-key typewriter semiotics chia messenger bag listicle. Offal church-key fanny pack schlitz 3 wolf moon, art party brooklyn hoodie. Vice viral venmo, swag franzen retro microdosing schlitz mustache occupy knausgaard cronut bespoke blog pork belly. Ethical salvia put a bird on it occupy small batch everyday carry, quinoa messenger bag plaid green juice meggings affogato mixtape raw denim VHS. Cronut vice kale chips bespoke drinking vinegar. Salvia plaid yr truffaut hella.</p>
+                    <p>Hammock letterpress next level direct trade, distillery lomo hashtag health goth 90's salvia chartreuse migas ugh tacos. Put a bird on it pour-over disrupt health goth. Bitters deep v everyday carry distillery, mixtape letterpress microdosing hammock. Tumblr yr hoodie celiac, meggings stumptown jean shorts sustainable aesthetic hella kinfolk. Banh mi banjo bushwick, butcher skateboard brooklyn vice stumptown you probably haven't heard of them. Selvage quinoa sustainable lomo, pitchfork readymade organic trust fund four dollar toast. Brooklyn cold-pressed VHS, fixie leggings master cleanse you probably haven't heard of them tofu.</p>
+                    <p>90's skateboard pug small batch kogi locavore. Cold-pressed gluten-free plaid, flannel lo-fi slow-carb trust fund small batch synth helvetica keffiyeh whatever tofu mumblecore. Fingerstache keffiyeh XOXO banh mi vice shabby chic hella locavore. Wolf locavore cardigan, tattooed salvia pug try-hard echo park yr single-origin coffee migas VHS selfies. Tousled locavore yuccie blog, aesthetic cronut affogato godard XOXO marfa gentrify tacos. Literally brooklyn next level raw denim, cliche 90's franzen. Keffiyeh literally cardigan kale chips cronut.</p>
+                    <p>90's skateboard pug small batch kogi locavore. Cold-pressed gluten-free plaid, flannel lo-fi slow-carb trust fund small batch synth helvetica keffiyeh whatever tofu mumblecore. Fingerstache keffiyeh XOXO banh mi vice shabby chic hella locavore. Wolf locavore cardigan, tattooed salvia pug try-hard echo park yr single-origin coffee migas VHS selfies. Tousled locavore yuccie blog, aesthetic cronut affogato godard XOXO marfa gentrify tacos. Literally brooklyn next level raw denim, cliche 90's franzen. Keffiyeh literally cardigan kale chips cronut.</p>
+                    <!-- Code Snippet: R -->
+                    <pre><code>##Loop through data
+  coords <- data.frame() ##place holder
+  
+  for(i in 1:length(cities)){
+    
+    ##Coords
+    temp_coord <- geocode(cities[i], source = "google")
+    coords <- rbind(coords,temp_coord)
+    
+      e <- extent(temp_coord$lon - 1, temp_coord$lon + 1,
+                  temp_coord$lat - 0.25, temp_coord$lat + 0.25)
+      rc <- crop(rast, e)    
+      
+    ##Rescale brackets
+      sampled <- as.vector(rc)
+      clusters <- 15
+      clust <- kmeans(sampled,clusters)$cluster
+      combined <- as.data.frame(cbind(sampled,clust))
+      brk <- sort(aggregate(combined[,1], list(combined[,2]), max)[,2])
+      
+    #Plots
+      plot(rc, breaks=brk, col=colorRampPalette(c("#001a4d","#0066FF", "yellow"))(clusters), 
+           legend=F,yaxt='n',xaxt='n',frame = F, asp=1.5)
+      text(temp_coord$lon ,temp_coord$lat + 0.15,
+           substr(cities[i],1,regexpr(",",cities[i])-1), 
+           col="white", cex=1.25)
+       
+    rm(combined)
+  }</code></pre>
+                </section>
+                <section id="narrative_3">
+                    <h3><strong>NARRATIVE_3</strong></h3>
+                    <p>Asymmetrical seitan kombucha butcher, franzen swag cred salvia echo park man bun etsy tote bag church-key. Squid waistcoat readymade microdosing, man braid venmo actually you probably haven't heard of them bushwick normcore hammock drinking vinegar kogi. Truffaut wolf helvetica venmo, irony flannel cold-pressed pop-up forage polaroid fashion axe four loko. YOLO aesthetic pour-over, plaid keytar forage XOXO hammock shabby chic actually yr shoreditch food truck selfies. Brooklyn helvetica gochujang celiac. Ennui mumblecore locavore lumbersexual sartorial wolf, craft beer disrupt drinking vinegar 3 wolf moon semiotics. Cronut meh VHS, stumptown cray quinoa ennui single-origin coffee tousled.</p>
+                    <p>Green juice 90's mumblecore, pop-up cray yr roof party lomo XOXO cardigan thundercats hammock. Semiotics yuccie austin umami leggings. Tacos tilde ennui, cliche knausgaard sartorial irony normcore. Four dollar toast heirloom pug, swag roof party locavore deep v cold-pressed. Deep v yuccie humblebrag asymmetrical, artisan blog pabst roof party sriracha typewriter chia tattooed biodiesel thundercats retro. Beard hoodie meditation 90's, vegan crucifix keytar yr drinking vinegar. Pork belly banjo artisan microdosing XOXO.</p>
+                    <img class="viz-img" src="img/TEMPLATE_VIZ_4.png">
+                    <p>Lomo kickstarter blog, ethical seitan chia microdosing. Microdosing tumblr hella lumbersexual readymade, synth slow-carb. Food truck stumptown VHS cornhole 90's. Intelligentsia cronut tofu, jean shorts knausgaard polaroid irony seitan. Hoodie salvia chambray austin fixie, chicharrones chillwave post-ironic cardigan. Gastropub messenger bag street art drinking vinegar, listicle next level skateboard. IPhone waistcoat everyday carry fap skateboard synth, 3 wolf moon tote bag marfa polaroid gentrify gluten-free yr.</p>
+                    <p>Cardigan kombucha photo booth, stumptown wolf knausgaard tote bag art party intelligentsia four loko. Roof party gluten-free kickstarter bicycle rights, meditation dreamcatcher lo-fi shabby chic. Jean shorts cold-pressed organic umami. Leggings retro actually, pug plaid synth readymade selvage jean shorts cray post-ironic knausgaard polaroid. Beard normcore sartorial celiac lumbersexual mustache. Narwhal distillery selfies, trust fund literally before they sold out actually pinterest beard kogi small batch bespoke cronut banjo hashtag. Vinyl pour-over locavore slow-carb, authentic chartreuse paleo kogi vegan cred normcore echo park sustainable before they sold out.</p>
+                </section>
+                </div><!-- Content -->
+                <div id='sidebar' class="hidden-xs hidden-sm col-lg-2 col-md-2"><!-- Sidebar -->
+                    <ul id='featured-nav' class="nav nav-list featured-nav nav-stacked">
+                        <li>
+                            <ul class="fa-style"><!-- Font Awesome -->
+                                <li><a href=""><i class="fa fa-file-archive-o fa-lg"></i></a></li>
+                                <li><a href=""><i class="fa fa-file-code-o fa-lg"></i></a></li>
+                                <li><a href=""><i class="fa fa-github-square fa-lg"></i></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="fa-style"><!-- Font Awesome -->
+                                <li><a href=""><i class="fa fa-twitter-square fa-lg"></i></a></li><!-- Haven't added the SNS components -->
+                                <li><a href=""><i class="fa fa-linkedin-square fa-lg"></i></a></li>
+                                <li><a href=""><i class="fa fa-facebook-square fa-lg"></i></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#intro">INTRODUCTION</a></li>
+                        <li><a href="#narrative_1">NARRATIVE_1</a></li>
+                        <li><a href="#narrative_2">NARRATIVE_2</a></li>
+                        <li><a href="#narrative_3">NARRATIVE_3</a></li>
                     </ul>
-                    <strong>Edited by the Commerce Data Service</strong><br>
-                    <ul>
-                        <li>TEMPLATE_EDITOR</li>
-                    </ul>
-                    </small>
-                </p>
-            </div>
-            <div class="col-lg-7">
-                <p style="font-family:Helvetica;">
-                <span style="font-size:150%;color:lightgrey;"><strong>TEMPLATE_INTRO:</strong><br></span>
-                <span style='color:lightgrey'>
-                DIY meggings typewriter semiotics, humblebrag authentic affogato celiac tousled mumblecore kogi. Mustache bicycle rights brunch, chillwave kombucha irony cred etsy vice waistcoat literally squid four dollar toast. Intelligentsia gluten-free before they sold out godard cold-pressed, +1 ramps try-hard. Selvage master cleanse flannel blog, disrupt asymmetrical tote bag man braid next level. Keytar authentic heirloom, kale chips sartorial before they sold out biodiesel cliche artisan direct trade. Lomo 90's typewriter VHS pour-over, lo-fi franzen distillery craft beer literally forage meggings. Humblebrag asymmetrical try-hard, tote bag mlkshk squid DIY iPhone yr hashtag fanny pack semiotics franzen readymade.
-                </span>
-                </p>
-            </div>
-        </div>
+                </div><!-- Sidebar -->
+            </div><!-- Row -->
+        </div><!-- Container-fluid -->
     </div>
-</div>
-
-<div class="container-fluid main-container">
-    <p style="font-family:Helvetica;">
-    <span style="font-size:150%;color:purple;"><strong>TEMPLATE_NARRATIVE_1</strong><br></span>
-    Scenester 8-bit gluten-free, selfies man braid you probably haven't heard of them pop-up single-origin coffee microdosing beard. Wayfarers food truck bicycle rights, ramps roof party 3 wolf moon fingerstache neutra DIY hoodie kickstarter vice. Church-key dreamcatcher drinking vinegar, scenester fap actually mixtape fingerstache art party quinoa offal occupy irony bitters. Hoodie normcore green juice heirloom polaroid. 8-bit kogi fashion axe ethical bushwick slow-carb kickstarter tattooed. Keytar bitters single-origin coffee VHS drinking vinegar umami. Ennui polaroid pug kale chips, wayfarers skateboard fap church-key sriracha gentrify gochujang.</p>
-    <img src="img/TEMPLATE_VIZ_1.jpg">
-    <p>Truffaut four dollar toast schlitz mlkshk meh single-origin coffee. IPhone quinoa banh mi, mlkshk cornhole shoreditch 8-bit art party fap waistcoat lumbersexual pour-over venmo brooklyn. Gastropub brooklyn kickstarter selfies, quinoa 90's mixtape ramps everyday carry occupy neutra humblebrag swag. Pabst mixtape church-key, sustainable yr single-origin coffee occupy portland asymmetrical plaid ennui. Locavore cray green juice marfa portland photo booth everyday carry freegan tousled synth, leggings brooklyn 90's. Narwhal literally fixie drinking vinegar gluten-free, roof party heirloom blog kinfolk. Narwhal fap keytar, health goth tilde church-key squid shabby chic chicharrones gochujang tote bag vinyl kinfolk.</p>
-    <p>Asymmetrical lomo 3 wolf moon paleo forage, mixtape fashion axe shoreditch squid pour-over. Yuccie street art you probably haven't heard of them, fixie celiac austin normcore organic 3 wolf moon roof party offal bespoke bicycle rights. Banh mi lomo gochujang tofu, microdosing organic paleo celiac vinyl swag synth cred shoreditch typewriter. Seitan try-hard blog disrupt pinterest. Viral man braid distillery typewriter shabby chic flexitarian ramps. Everyday carry next level church-key fanny pack, kale chips forage twee selvage locavore brunch. Lo-fi letterpress yr pork belly, fixie banjo pop-up asymmetrical intelligentsia YOLO tofu mustache quinoa.</p>
-    <p>Lumbersexual DIY thundercats kogi beard trust fund, blog everyday carry shabby chic jean shorts salvia sartorial. Cred pork belly hashtag meh helvetica, scenester cornhole photo booth meditation beard roof party pop-up thundercats. Yr wolf fashion axe blue bottle asymmetrical crucifix pop-up, plaid wayfarers. Pug gentrify selfies tote bag, whatever crucifix bespoke try-hard XOXO heirloom vinyl everyday carry flannel pinterest. Bespoke butcher leggings, you probably haven't heard of them bitters craft beer pickled crucifix chia post-ironic. Yuccie plaid you probably haven't heard of them, hoodie kinfolk pabst typewriter four dollar toast. Chambray echo park kinfolk 8-bit microdosing, pork belly shabby chic art party iPhone thundercats vegan you probably haven't heard of them.</p>
-    <img src="img/TEMPLATE_VIZ_2.png">
-</div>
-
-<div class="container-fluid main-container">
-    <p style="font-family:Helvetica;">
-    <span style="font-size:150%;color:purple;"><strong>TEMPLATE_NARRATIVE_2</strong><br></span>
-    Hella cold-pressed thundercats, art party messenger bag man bun health goth chartreuse schlitz lomo helvetica marfa gluten-free. DIY keffiyeh sriracha bushwick taxidermy forage, cardigan keytar fanny pack. Mustache banjo narwhal ramps. Distillery pork belly brooklyn, butcher pickled scenester meggings church-key 3 wolf moon hammock hella mustache cray. Trust fund hoodie selfies, tousled pabst selvage disrupt 90's. Vice banjo post-ironic, swag raw denim retro etsy kitsch single-origin coffee cronut fingerstache meggings marfa. Mlkshk forage aesthetic banjo vinyl, occupy tousled VHS flannel brooklyn bespoke offal.</p>
-    <img src="img/TEMPLATE_VIZ_3.png">
-    <p>Helvetica kogi hashtag affogato food truck, gentrify selfies listicle truffaut migas tattooed. Kale chips echo park tousled, bicycle rights waistcoat godard schlitz 3 wolf moon tote bag church-key typewriter semiotics chia messenger bag listicle. Offal church-key fanny pack schlitz 3 wolf moon, art party brooklyn hoodie. Vice viral venmo, swag franzen retro microdosing schlitz mustache occupy knausgaard cronut bespoke blog pork belly. Ethical salvia put a bird on it occupy small batch everyday carry, quinoa messenger bag plaid green juice meggings affogato mixtape raw denim VHS. Cronut vice kale chips bespoke drinking vinegar. Salvia plaid yr truffaut hella.</p>
-    <p>Hammock letterpress next level direct trade, distillery lomo hashtag health goth 90's salvia chartreuse migas ugh tacos. Put a bird on it pour-over disrupt health goth. Bitters deep v everyday carry distillery, mixtape letterpress microdosing hammock. Tumblr yr hoodie celiac, meggings stumptown jean shorts sustainable aesthetic hella kinfolk. Banh mi banjo bushwick, butcher skateboard brooklyn vice stumptown you probably haven't heard of them. Selvage quinoa sustainable lomo, pitchfork readymade organic trust fund four dollar toast. Brooklyn cold-pressed VHS, fixie leggings master cleanse you probably haven't heard of them tofu.</p>
-    <p>90's skateboard pug small batch kogi locavore. Cold-pressed gluten-free plaid, flannel lo-fi slow-carb trust fund small batch synth helvetica keffiyeh whatever tofu mumblecore. Fingerstache keffiyeh XOXO banh mi vice shabby chic hella locavore. Wolf locavore cardigan, tattooed salvia pug try-hard echo park yr single-origin coffee migas VHS selfies. Tousled locavore yuccie blog, aesthetic cronut affogato godard XOXO marfa gentrify tacos. Literally brooklyn next level raw denim, cliche 90's franzen. Keffiyeh literally cardigan kale chips cronut.</p>
-</div>
-
-
-<div class="container-fluid main-container">
-    <p style="font-family:Helvetica;">
-    <span style="font-size:150%;color:purple;"><strong>TEMPLATE_NARRATIVE_3</strong><br></span>
-    Asymmetrical seitan kombucha butcher, franzen swag cred salvia echo park man bun etsy tote bag church-key. Squid waistcoat readymade microdosing, man braid venmo actually you probably haven't heard of them bushwick normcore hammock drinking vinegar kogi. Truffaut wolf helvetica venmo, irony flannel cold-pressed pop-up forage polaroid fashion axe four loko. YOLO aesthetic pour-over, plaid keytar forage XOXO hammock shabby chic actually yr shoreditch food truck selfies. Brooklyn helvetica gochujang celiac. Ennui mumblecore locavore lumbersexual sartorial wolf, craft beer disrupt drinking vinegar 3 wolf moon semiotics. Cronut meh VHS, stumptown cray quinoa ennui single-origin coffee tousled.</p>
-    <p>Green juice 90's mumblecore, pop-up cray yr roof party lomo XOXO cardigan thundercats hammock. Semiotics yuccie austin umami leggings. Tacos tilde ennui, cliche knausgaard sartorial irony normcore. Four dollar toast heirloom pug, swag roof party locavore deep v cold-pressed. Deep v yuccie humblebrag asymmetrical, artisan blog pabst roof party sriracha typewriter chia tattooed biodiesel thundercats retro. Beard hoodie meditation 90's, vegan crucifix keytar yr drinking vinegar. Pork belly banjo artisan microdosing XOXO.</p>
-    <img src="img/TEMPLATE_VIZ_4.png">
-    <p>Lomo kickstarter blog, ethical seitan chia microdosing. Microdosing tumblr hella lumbersexual readymade, synth slow-carb. Food truck stumptown VHS cornhole 90's. Intelligentsia cronut tofu, jean shorts knausgaard polaroid irony seitan. Hoodie salvia chambray austin fixie, chicharrones chillwave post-ironic cardigan. Gastropub messenger bag street art drinking vinegar, listicle next level skateboard. IPhone waistcoat everyday carry fap skateboard synth, 3 wolf moon tote bag marfa polaroid gentrify gluten-free yr.</p>
-    <p>Cardigan kombucha photo booth, stumptown wolf knausgaard tote bag art party intelligentsia four loko. Roof party gluten-free kickstarter bicycle rights, meditation dreamcatcher lo-fi shabby chic. Jean shorts cold-pressed organic umami. Leggings retro actually, pug plaid synth readymade selvage jean shorts cray post-ironic knausgaard polaroid. Beard normcore sartorial celiac lumbersexual mustache. Narwhal distillery selfies, trust fund literally before they sold out actually pinterest beard kogi small batch bespoke cronut banjo hashtag. Vinyl pour-over locavore slow-carb, authentic chartreuse paleo kogi vegan cred normcore echo park sustainable before they sold out.</p>
-</div>
-
-<!-- Example Interactive Visualization -->
-<div id="network_plot" class="container-fluid main-container" >
-    <form>
-    <h4 style="font-family:helvetica"> Choose a week: <input 
-        type="week", 
-        name="choose_week", 
-        min="2015-W01", 
-        max="2015-W40", 
-        value="2015-W02", 
-        placeholder="Choose a week", 
-        onchange="weekly(parseInt(this.value.substring(6,8)))"
-    ></h4>
-    </form>
-    <script>
-        var graph;
-
-        function myGraph() {
-
-            // Add and remove elements on the graph object
-            this.addNode = function (obj) {
-                var radius = 300,
-                    noise = (Math.random() - .5) * radius/10,
-
-                    circle_x = (Math.round(Math.random())*2 - 1) * radius * Math.random() + w/2 + noise,
-                    circle_y = Math.pow(Math.pow(radius,2) - Math.pow(circle_x - w/2, 2), .5) * (Math.round(Math.random())*2 - 1) + h/2 + noise,
-
-                    center_x = (Math.random - 0.5) * w + noise * 5 * w/1500,
-                    center_y = h/2 + noise*10,
-
-                    final_x = (obj.type == 0) ? center_x : circle_x,
-                    final_y = (obj.type == 0) ? center_y : circle_y;
-
-                nodes.push({"id": obj.name, 
-                            "group": obj.group, 
-                            "threat": obj.threat, 
-                            'type': d3.svg.symbolTypes[obj.type*3],
-                            'x': final_x,
-                            'y': final_y,
-                            'fixed': ((obj.type == 0) ? true : false)
-                        });
-                update();
-            };
-
-            this.removeNode = function (id) {
-                var i = 0;
-                var n = findNode(id);
-                while (i < links.length) {
-                    if ((links[i]['source'] == n) || (links[i]['target'] == n)) {
-                        links.splice(i, 1);
-                    }
-                    else i++;
-                }
-                nodes.splice(findNodeIndex(id), 1);
-                update();
-            };
-
-            this.removeLink = function (source, target) {
-                for (var i = 0; i < links.length; i++) {
-                    if (links[i].source.id == source && links[i].target.id == target) {
-                        links.splice(i, 1);
-                        break;
-                    }
-                }
-                update();
-            };
-
-            this.removeallLinks = function () {
-                links.splice(0, links.length);
-                update();
-            };
-
-            this.removeAllNodes = function () {
-                nodes.splice(0, links.length);
-                update();
-            };
-
-            this.addLink = function (obj) {
-                links.push({"source": findNode(obj.source), "target": findNode(obj.target), "value": obj.threat});
-                update();
-            };
-
-            this.freeNode = function (obj) {
-                // console.log(findNode(obj.name));
-                findNode(obj.name).fixed = false;
-                update();
-            };
-
-            var findNode = function (id) {
-                for (var i in nodes) {
-                    if (nodes[i]["id"] === id) return nodes[i];
-                }
-                ;
-            };
-
-            var findNodeIndex = function (id) {
-                for (var i = 0; i < nodes.length; i++) {
-                    if (nodes[i].id == id) {
-                        return i;
-                    }
-                }
-                ;
-            };
-
-            // set up the D3 visualisation in the specified element
-            var w = $("#network_plot").width(),
-                h = window.innerHeight/1.2,
-                r = 6;
-
-            var color = d3.scale.category20b();
-
-            var vis = d3.select("#network_plot")
-                    .append("svg:svg")
-                    .attr("style", "outline: thin solid lightgrey;")
-                    .attr("width", w)
-                    .attr("height", h)
-                    .attr("id", "svg_net")
-                    .attr("pointer-events", "all")
-                    .attr("viewBox", "0 0 " + w + " " + h)
-                    .attr("perserveAspectRatio", "xMinYMid")
-                    .append('svg:g');
-
-            // vis.append("rect")
-            //     .attr("width", "100%")
-            //     .attr("height", "100%")
-            //     .attr("fill", "#7f7f7f");
-
-            var force = d3.layout.force();
-
-            var nodes = force.nodes(),
-                links = force.links();
-
-            var update = function () {
-                var link = vis.selectAll("line")
-                        .data(links, function (d) {
-                            return d.source.id + "-" + d.target.id;
-                        });
-
-                link.enter().append("line")
-                        .attr("id", function (d) {
-                            return d.source.id + "-" + d.target.id;
-                        })
-                        .attr("stroke-width", function (d) {
-                            return d.value / 100;
-                        })
-                        .attr("class", "link");
-                link.append("title")
-                        .text(function (d) {
-                            return d.value;
-                        });
-                link.exit().remove();
-
-                var node = vis.selectAll("g.node")
-                        .data(nodes, function (d) {
-                            return d.id;
-                        });
-
-                var nodeEnter = node.enter().append("g")
-                        .attr("class", "node")
-                        .call(force.drag);
-
-                nodeEnter.append("svg:path")
-                        .attr("id", function (d) {
-                            return "Node;" + d.id;
-                        })
-                        .attr("d", d3.svg.symbol()
-                            .size(function(d) { return (Math.pow(d.threat,2) + 5) * 20 * w/1500; })
-                            .type(function(d) { return d.type; }))
-                        .attr("class", "nodeStrokeClass")
-                        .attr("fill", function(d) { return color(d.group); });
-
-                nodeEnter.append("svg:text")
-                        .attr("class", "textClass")
-                        .attr("x", 14)
-                        .attr("y", ".31em")
-                        .text(function (d) {
-                            return (d.type == 'circle') ? d.id : '';
-                        });
-
-                node.exit().remove();
-
-                var padding = 5,
-                    radius=15;
-
-                function collide(alpha) {
-                  var quadtree = d3.geom.quadtree(nodes);
-                  return function(d) {
-                    var rb = 2*radius + padding,
-                        nx1 = d.x - rb,
-                        nx2 = d.x + rb,
-                        ny1 = d.y - rb,
-                        ny2 = d.y + rb;
-                    
-                    quadtree.visit(function(quad, x1, y1, x2, y2) {
-                      if (quad.point && (quad.point !== d)) {
-                        var x = d.x - quad.point.x,
-                            y = d.y - quad.point.y,
-                            l = Math.sqrt(x * x + y * y);
-                          if (l < rb) {
-                          l = (l - rb) / l * alpha;
-                          d.x -= x *= l;
-                          d.y -= y *= l;
-                          quad.point.x += x;
-                          quad.point.y += y;
-                        }
-                      }
-                      return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
-                    });
-                  };
-                }
-
-                var vulnNum = nodes.filter( function(d) { return d.type == 'square'; }).length,
-                    platNum = nodes.filter( function(d) { return d.type == 'circle'; }).length
-
-                vis.selectAll(".title")
-                    .remove();
-
-                var counter = vis.append("svg:text")
-                                  .attr("class", "title")
-                                  .attr("x", 10)
-                                  .attr("y", 15)
-                                  .attr("text-anchor", "left")
-                                  .text(function(d) {
-                                    return "Vulnerabilities: " + vulnNum + "  Platforms: " + platNum;
-                                  });
-
-                var dayofWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-
-                // Erase last draw of legend
-                d3.selectAll(".legend")
-                    .remove();
-
-                var legend = vis.selectAll(".legend")
-                            // sort color domain to list legend in ascending order
-                            .data(color.domain().sort())
-                        .enter().append("g")
-                            .attr("class", "legend")
-                            .attr("transform", function(d, i) { return "translate(-10," + i * 20 + ")"; });
-
-                legend.append("rect")
-                      .attr("x", w - 18)
-                      .attr("y", 2)
-                      .attr("width", 18)
-                      .attr("height", 18)
-                      .style("fill", color);
-
-                legend.append("text")
-                      .attr("x", w - 24)
-                      .attr("y", 11)
-                      .attr("dy", ".35em")
-                      .attr("class", "legendText")
-                      .style("text-anchor", "end")
-                      .text(function(d) { return dayofWeek[d-1]; });
-
-                force.on("tick", function () {
-
-                    node.attr("transform", function (d) {
-                        return "translate(" + Math.max(r, Math.min(w - r, d.x)) + "," + Math.max(r, Math.min(h - r, d.y)) + ")";
-                    });
-
-                    link.attr("x1", function (d) {
-                        return d.source.x;
-                    })
-                            .attr("y1", function (d) {
-                                return d.source.y;
-                            })
-                            .attr("x2", function (d) {
-                                return d.target.x;
-                            })
-                            .attr("y2", function (d) {
-                                return d.target.y;
-                            });
-                            // node.each(collide(0.5));
-                });
-
-                // Restart the force layout.
-                force
-                    .gravity(-.001)
-                    .charge(-30)
-                    .friction(0.5)
-                    .linkDistance( function(d) { return d.value * 20 * w/1800 } )
-                    .size([w, h])
-                    .start();
-            };
-
-
-            // Make it all go
-            update();
-
-        }
-
-        function drawGraph(weeknumber) {
-
-            graph = new myGraph("#svgdiv");
-
-            // Load JSON and iteratively draw that weeks graph
-            d3.json('img/nvd.json', function(error, json){
-                if (error) return console.warn(error);
-                nodes = json.nodes;
-                links = json.links;
-                var step = 1;
-                function nextval(){
-                    step++;
-                    return 20 + (15 + step);
-                };
-                weeklynodes = nodes.filter( function(d){ return d.week == weeknumber; });
-                weeklylinks = links.filter( function(d){ return d.week == weeknumber; });
-                for (var i = 0; i < weeklynodes.length; i++){
-                    (function(ind){
-                        setTimeout(function(){ graph.addNode(weeklynodes[ind]); keepNodesOnTop(); }, 75 * ind);
-                    })(i);
-                };
-                for (var i = 0; i < weeklylinks.length; i++){
-                    (function(ind){
-                        setTimeout(function(){ graph.addLink(weeklylinks[ind]); keepNodesOnTop(); }, 50 * ind + 75 * weeklynodes.length);
-                    })(i);
-                };
-                // for (var i = 0; i < weeklynodes.length; i++){
-                //     (function(ind){
-                //         setTimeout(function(){ graph.freeNode(weeklynodes[ind]); keepNodesOnTop(); }, 20 * ind + 50 * weeklylinks.length + 75 * weeklynodes.length);
-                //     })(i);
-                // };
-            });
-
-        }
-
-        // Initialize on Week 2, first non-empty week
-        var thisweek = 2;
-        drawGraph(thisweek);
-
-        // because of the way the network is created, nodes are created first, and links second,
-        // so the lines were on top of the nodes, this just reorders the DOM to put the svg:g on top
-        function keepNodesOnTop() {
-            $(".nodeStrokeClass").each(function( index ) {
-                var gnode = this.parentNode;
-                gnode.parentNode.appendChild(gnode);
-            });
-        }
-
-        function weekly(newweek){
-            // $('#svg_net').stop(stopAll=true,goToEnd=true);
-            d3.select("#svg_net")
-                    .remove();
-            // myGraph();
-            drawGraph(newweek);
-        }
-
-    </script>
-</div>     
-
-
-<div class="container-fluid main-container">
-    <p style="font-family:Helvetica;">
-    <span style="font-size:150%;color:purple;"><strong>TEMPLATE_CONCLUSION</strong><br></span>
-    Humblebrag williamsburg chambray pork belly neutra authentic, viral mustache twee yr normcore fashion axe kale chips truffaut. Asymmetrical mumblecore cray, kickstarter everyday carry 3 wolf moon health goth ugh pitchfork bicycle rights. Banh mi disrupt put a bird on it ugh beard food truck. Skateboard mlkshk celiac single-origin coffee. Ramps swag venmo disrupt, cliche meggings direct trade selfies gluten-free pop-up selvage affogato irony. Hammock sriracha etsy neutra gluten-free fap. Mixtape 8-bit umami, chambray raw denim keffiyeh selvage cred.</p>
-    <p>Echo park messenger bag ugh vinyl. Hammock trust fund listicle literally fanny pack photo booth. Whatever helvetica cred, you probably haven't heard of them cold-pressed selvage art party YOLO green juice direct trade franzen. Direct trade butcher bespoke cliche, hella pour-over four loko lumbersexual chicharrones vice neutra kitsch. Pitchfork squid bicycle rights listicle paleo bespoke. Mustache 3 wolf moon lo-fi, meh gochujang vice brunch. Mlkshk farm-to-table pug, meggings pitchfork bespoke four loko man bun disrupt drinking vinegar echo park viral tofu.</p>
-    <p>Dreamcatcher intelligentsia selfies, post-ironic synth kinfolk waistcoat mixtape humblebrag celiac ennui yuccie bespoke semiotics. Pug keytar ethical disrupt. Tacos tumblr biodiesel, trust fund narwhal 3 wolf moon portland viral normcore four loko brooklyn. Bitters YOLO drinking vinegar listicle, tofu selfies austin iPhone gluten-free literally hashtag. Cliche synth celiac, fashion axe knausgaard dreamcatcher vice lumbersexual. Meditation neutra blog DIY, mlkshk asymmetrical mumblecore pork belly meh. Kinfolk etsy DIY deep v bespoke pabst.</p>
-</div>
-
-
-<!-- Getting Started/Code Notebook Section -->
-<div id='code' style="color:black;font-family:Helvetica;" >
-    <div class="container-fluid main-container">
-    <p style="font-family:Helvetica"><span style="font-size:200%;color:purple;"><br><strong>TEMPLATE_GETSTARTED</strong></span>
-        <br>Schlitz hoodie echo park godard, chicharrones gentrify small batch wayfarers gastropub put a bird on it humblebrag microdosing taxidermy drinking vinegar. Health goth scenester tacos actually, ugh tumblr vinyl XOXO ennui meditation try-hard. Narwhal seitan artisan, ugh flannel green juice polaroid pickled drinking vinegar tousled plaid man bun heirloom mixtape. Keytar try-hard jean shorts thundercats meh. Wayfarers banh mi sriracha, bitters intelligentsia messenger bag distillery migas. Fashion axe fixie photo booth gluten-free seitan, meh bicycle rights thundercats post-ironic occupy etsy. Post-ironic chia synth, cronut chillwave tousled kale chips craft beer umami sriracha health goth shoreditch paleo.</p>
-    <p>Follow along in the Jupyter Notebook below or check out the code files at <a href="https://github.com/CommerceDataService/TEMPLATE_REPO">TEMPLATE_REPO</a>.</p> 
-    <p><a href="./TEMPLATE_NOTEBOOK.ipynb">Download TEMPLATE_NOTEBOOK_TYPE</a></p>
-    </div>
-</div>
-
-<!-- <div>
-<iframe src="markdown_or_jupyter_export" marginwidth="0" frameborder = "0"  marginheight="0" scrolling="no" width="100%" height="100%" onload="resizeIframe(this)"></iframe>
-</div>
-
-<script language="javascript" type="text/javascript">
-  function resizeIframe(obj) {
-    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-  }
-</script>
- -->
 
 </body>
 </html>
