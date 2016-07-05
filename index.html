@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Template Site</title>
+    <title>Mapbox (Part 2 of 2)</title>
 
     <!-- Javascript -->
     <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
@@ -33,7 +33,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand navbar-color" href="#"><strong>know.data</strong></a>
+                <a class="navbar-brand navbar-color" href="#"><strong>Data Usability</strong></a>
             </div> <!-- navbar-header -->
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -46,7 +46,7 @@
                     <li><a href="#">Sponsor</a></li>
                     <li><a href="#">Partner</a></li>
                 </ul>
-            </div><!-- navbar-collapse -->
+            </div><!-- navbar-collapse --> 
         </div><!-- container-fluid -->
     </nav>
 
@@ -54,10 +54,9 @@
     <section class="scroll">
         <div class="scroll-overlay">
             <div class="title">
-                <h3><strong>TITLE OF TUTORIAL</strong></h3>
-                <h4>SUBTITLE OF MY TUTORIAL THAT ELABORATES MORE</h4>
-                <h5><strong>by AUTHORS</strong></h5>
-                <h6>DATE</h6>
+                <h3><strong>Living Weather Data for Web Maps</strong></h3>
+                <h4>Part 2: Using Mapbox and open source to dynamically visualize atmospheric water</h4>
+                <h5><strong>By Damon Burgett, Geographer, Mapbox and Charlie Lloyd, Mapbox</strong></h5>
             </div>
         </div>
     </section>
@@ -68,59 +67,149 @@
             <div class="row">
                 <div id='content' class="col-lg-10 col-md-10"><!-- Content -->
                 <section id='intro'>
-                    <h3><strong>INTRODUCTION:</strong></h3>
-                    <p>DIY meggings typewriter semiotics, humblebrag authentic affogato celiac tousled mumblecore kogi. Mustache bicycle rights brunch, chillwave kombucha irony cred etsy vice waistcoat literally squid four dollar toast. Intelligentsia gluten-free before they sold out godard cold-pressed, +1 ramps try-hard. Selvage master cleanse flannel blog, disrupt asymmetrical tote bag man braid next level. Keytar authentic heirloom, kale chips sartorial before they sold out biodiesel cliche artisan direct trade. Lomo 90's typewriter VHS pour-over, lo-fi franzen distillery craft beer literally forage meggings. Humblebrag asymmetrical try-hard, tote bag mlkshk squid DIY iPhone yr hashtag fanny pack semiotics franzen readymade.</p>
-                    <p>DIY meggings typewriter semiotics, humblebrag authentic affogato celiac tousled mumblecore kogi. Mustache bicycle rights brunch, chillwave kombucha irony cred etsy vice waistcoat literally squid four dollar toast. Intelligentsia gluten-free before they sold out godard cold-pressed, +1 ramps try-hard. Selvage master cleanse flannel blog, disrupt asymmetrical tote bag man braid next level. Keytar authentic heirloom, kale chips sartorial before they sold out biodiesel cliche artisan direct trade. Lomo 90's typewriter VHS pour-over, lo-fi franzen distillery craft beer literally forage meggings. Humblebrag asymmetrical try-hard, tote bag mlkshk squid DIY iPhone yr hashtag fanny pack semiotics franzen readymade.</p>
-                    <h3 id='narrative_1'><strong>NARRATIVE_1</strong></h3>
-                    <p>Scenester 8-bit gluten-free, selfies man braid you probably haven't heard of them pop-up single-origin coffee microdosing beard. Wayfarers food truck bicycle rights, ramps roof party 3 wolf moon fingerstache neutra DIY hoodie kickstarter vice. Church-key dreamcatcher drinking vinegar, scenester fap actually mixtape fingerstache art party quinoa offal occupy irony bitters. Hoodie normcore green juice heirloom polaroid. 8-bit kogi fashion axe ethical bushwick slow-carb kickstarter tattooed. Keytar bitters single-origin coffee VHS drinking vinegar umami. Ennui polaroid pug kale chips, wayfarers skateboard fap church-key sriracha gentrify gochujang.</p>
-                    <img class="viz-img" src="img/TEMPLATE_VIZ_1.jpg">
-                    <p>Truffaut four dollar toast schlitz mlkshk meh single-origin coffee. IPhone quinoa banh mi, mlkshk cornhole shoreditch 8-bit art party fap waistcoat lumbersexual pour-over venmo brooklyn. Gastropub brooklyn kickstarter selfies, quinoa 90's mixtape ramps everyday carry occupy neutra humblebrag swag. Pabst mixtape church-key, sustainable yr single-origin coffee occupy portland asymmetrical plaid ennui. Locavore cray green juice marfa portland photo booth everyday carry freegan tousled synth, leggings brooklyn 90's. Narwhal literally fixie drinking vinegar gluten-free, roof party heirloom blog kinfolk. Narwhal fap keytar, health goth tilde church-key squid shabby chic chicharrones gochujang tote bag vinyl kinfolk.</p>
-                    <!-- Code Snippet: Python -->
-                    <pre><code class="python">rootdir = './tracts/'
-us_features = []
-empty_tracts = []
-for subdir, dirs, files in os.walk(rootdir):
-    for f in tqdm(files):
-        if f[-3:] == 'zip':
-            features = []
-            with fiona.open('/', vfs='zip://'+os.path.join(subdir, f), layer=0) as src:
-                for feat in src:
-                    feat['properties']['x'] = round(asShape(feat['geometry']).centroid.x,4)
-                    feat['properties']['y'] = round(asShape(feat['geometry']).centroid.y,4)
-                    tract = feat['properties']['GEO_ID'][9:]
-                    try:
-                        feat['properties']['g'] = custom[tract]['gname']                           
-                        for popme in [u'NAME', u'LSAD', u'STATE', u'COUNTY', u'TRACT', u'CENSUSAREA', u'GEO_ID']:
-                            feat['properties'].pop(popme)
-                        for rank in variables:
-                            feat['properties']['s'+rank] = custom[tract]['score_'+rank]
-                        feat['properties']['r'] = custom[tract]['final_score']
-                        try:
-                            feat['properties']['f'] = round(compl_append[tract],0)
-                        except KeyError:
-                            feat['properties']['f'] = 0
-                        features.append(feat)
-                        us_features.append(feat)
-                    except KeyError:
-                        empty_tracts.append(tract)
-            rank_map = {
-                'type':'FeatureCollection',
-                'features':features,
-                'crs':{'init': u'epsg:4269'}}
-            with open('./tracts/%s.geojson'%f, 'wb') as fl:
-                json.dump(rank_map, fl)</code></pre>
-                    <p>Asymmetrical lomo 3 wolf moon paleo forage, mixtape fashion axe shoreditch squid pour-over. Yuccie street art you probably haven't heard of them, fixie celiac austin normcore organic 3 wolf moon roof party offal bespoke bicycle rights. Banh mi lomo gochujang tofu, microdosing organic paleo celiac vinyl swag synth cred shoreditch typewriter. Seitan try-hard blog disrupt pinterest. Viral man braid distillery typewriter shabby chic flexitarian ramps. Everyday carry next level church-key fanny pack, kale chips forage twee selvage locavore brunch. Lo-fi letterpress yr pork belly, fixie banjo pop-up asymmetrical intelligentsia YOLO tofu mustache quinoa.</p>
-                    <p>Lumbersexual DIY thundercats kogi beard trust fund, blog everyday carry shabby chic jean shorts salvia sartorial. Cred pork belly hashtag meh helvetica, scenester cornhole photo booth meditation beard roof party pop-up thundercats. Yr wolf fashion axe blue bottle asymmetrical crucifix pop-up, plaid wayfarers. Pug gentrify selfies tote bag, whatever crucifix bespoke try-hard XOXO heirloom vinyl everyday carry flannel pinterest. Bespoke butcher leggings, you probably haven't heard of them bitters craft beer pickled crucifix chia post-ironic. Yuccie plaid you probably haven't heard of them, hoodie kinfolk pabst typewriter four dollar toast. Chambray echo park kinfolk 8-bit microdosing, pork belly shabby chic art party iPhone thundercats vegan you probably haven't heard of them.</p>
-                    <img class="viz-img" src="img/TEMPLATE_VIZ_2.png">
+                   <h3><strong>ATMOSPHERIC DATA IS A DIGITAL REPRESENTATION OF THE LIVING ENVIRONMENT. </strong></h3>
+					<p>In this second tutorial in a two part series working with National Oceanic + Atmospheric Administration (NOAA) Precipitable Water (Pwat) data, we extend the data processing and visualization demonstrated in <strong><a href="http://commercedataservice.github.io/tutorial_mapbox_part1/">Part One</a></strong> and an animated interactive map of global Pwat over 12 days. In this segment, we'll be repeating the steps from Part 1, but in bulk and in parallel on over 100 datasets. At the end of this tutorial, we'll have an animated, interactive map of global pwat over 12 days.</p>  
+                   <br/>
+				   <p><img src="https://cloud.githubusercontent.com/assets/5084513/13926440/9296d324-ef49-11e5-9819-425eb184098f.gif" alt="full"></p>
+
+				   
+                    <h3 id='narrative_1'><strong>Getting Started </strong></h3>
+                    <p>To get started quickly, the code for this tutorial can be found at the following <a href="https://github.com/CommerceDataService/tutorial_mapbox_part2">Github repo</a>.</p>
+<h3><a id="Step_1_Preliminaries_8"></a>Step 1: Preliminaries</h3>
+<h4><a id="Libraries_and_Utilities_10"></a>Libraries and Utilities</h4>
+<p>We'll be using the following tools to wrangle the weather model output files:</p>
+<ul>
+<li><strong><a href="http://www.gdal.org/">GDAL</a></strong>: Translator library for raster and vector geospatial data formats;</li>
+<li><strong><a href="http://www.gnu.org/software/parallel/">parallel</a></strong>: Shell tool for executing jobs in parallel;</li>
+<li><strong><a href="https://github.com/mapbox/rasterio">rasterio</a></strong>: Clean and fast and geospatial raster I/O for Python programmers who use Numpy;</li>
+<li><strong><a href="https://github.com/mapbox/grib-doctor">gribdoctor</a></strong>: Utilities for handling quirks of weather data General Regularly-distributed Information in Binary form (grib) files. grib data is a concise data format commonly used in meteorology to store historical and forecast weather data which can looked at using software applications; and</li>
+<li><strong><a href="https://www.ffmpeg.org/">ffmpeg</a></strong>: Library to record, convert and stream audio and video</li>
+</ul>
+<h4><a id="Folder_Setup_19"></a>Folder Setup</h4>
+<p>Let's first setup a few folders to store intermediate files. In your working directory, make these 6 files - keeping it organized as such will keep things simpler down the line:</p>
+<pre><code><span class="hljs-label">working</span> directory
+ +-<span class="hljs-preprocessor">data</span>
+ +-<span class="hljs-preprocessor">global</span>
+ +-clip
+ +-mercator
+ +-pngs
+ +-output
+</code></pre>
+<p>As a command (from within your working directory):</p>
+<pre><code>mkdir data <span class="hljs-keyword">global</span> <span class="hljs-keyword">clip</span> mercator <span class="hljs-keyword">color</span> png output 
+</code></pre>
+<h3><a id="Step_2_Get_the_data_39"></a>Step 2: Get the data</h3>
+<p>From part one of our tutorial, we have the following url:</p>
+<pre><code><span class="hljs-keyword">http</span>://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25.pl?<span class="hljs-built_in">file</span>=gfs.t12z.pgrb2<span class="hljs-number">.0</span>p25.f000&amp;all_lev=<span class="hljs-command"><span class="hljs-keyword">on</span>&amp;<span class="hljs-title">var_PWAT</span>=<span class="hljs-title">on</span>&amp;<span class="hljs-title">leftlon</span>=<span class="hljs-title">0</span>&amp;<span class="hljs-title">rightlon</span>=<span class="hljs-title">360</span>&amp;<span class="hljs-title">toplat</span>=<span class="hljs-title">90</span>&amp;<span class="hljs-title">bottomlat</span>=-<span class="hljs-title">90</span>&amp;<span class="hljs-title">dir</span>=%<span class="hljs-title">2Fgfs</span><span class="hljs-number">.2016011212</span></span>
+</code></pre>
+<p>This links to the Global Forecast System (GFS) model of Pwat on 01/12/2016 at 12 GST, for a forecast of 0 hours. The GFS forcast dataset is created every six hours, with predictions produced from each model every 3 hours. By combining every six-hour model run's hour 0 and hour 3 prediction data, we'll be able to download data at a 3-hour interval.</p>
+<p><a href="http://www.gnu.org/software/parallel/">GNU Parallel</a> offers an efficient approach to abstract away a lot of the complication of iterating over numerous files. In particular, <code>parallel</code>'s abstraction of number expansion makes this manageable. Taking the above URL and replacing all the variables we want to iterate over, we have the following:</p>
+<pre><code><span class="hljs-keyword">http</span>://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25.pl?<span class="hljs-built_in">file</span>=gfs.t{<span class="hljs-built_in">time</span>}z.pgrb2<span class="hljs-number">.0</span>p25.f{<span class="hljs-built_in">time</span>}&amp;all_lev=<span class="hljs-command"><span class="hljs-keyword">on</span>&amp;<span class="hljs-title">var_PWAT</span>=<span class="hljs-title">on</span>&amp;<span class="hljs-title">leftlon</span>=<span class="hljs-title">0</span>&amp;<span class="hljs-title">rightlon</span>=<span class="hljs-title">360</span>&amp;<span class="hljs-title">toplat</span>=<span class="hljs-title">90</span>&amp;<span class="hljs-title">bottomlat</span>=-<span class="hljs-title">90</span>&amp;<span class="hljs-title">dir</span>=%<span class="hljs-title">2Fgfs</span><span class="hljs-number">.201603</span>{<span class="hljs-title">date</span>}{<span class="hljs-title">time</span>}</span>
+</code></pre>
+<p>Iterations are determined by the following three variables:</p>
+<ul>
+<li>
+<p><code>{date}</code> = Prediction date. We want 12 days, from the to 5th to the 17th, as two-digit numbers <code>{05..17}</code></p>
+</li>
+<li>
+<p><code>{hour}</code> = Prediction hour. We want 0, 6, 12, and 18 hours (every 6 hours), as two digit numbers <code>{00..18..6}</code></p>
+</li>
+<li>
+<p><code>{time}</code> = Prediction time. We want the 0 and 3 hour predictions, as three-digit numbers <code>{000..003..3}</code></p>
+</li>
+</ul>
+<p>Let's put it all together to see how it works:</p>
+<pre><code>parallel --header : echo {date}-{hour}-{off} ::: off {<span class="hljs-number">000.</span><span class="hljs-number">.003</span>.<span class="hljs-number">.3</span>} ::: date {<span class="hljs-number">05.</span><span class="hljs-number">.17</span>} ::: hour {<span class="hljs-number">00.</span><span class="hljs-number">.18</span>.<span class="hljs-number">.6</span>}
+</code></pre>
+<p>This should create 104 combinations of our input ranges in no particular order. With the URL, we can simply put these variables in place of the static numbers we see in the download link as in the example above.</p>
+<p>Here, we use <code>wget</code>, a command to download data from a URL. Plugging it into <code>parallel</code> means that for every combination of numbers we input, we'll perform <code>wget</code>. Let's first “dryrun” (<code>--dryrun</code>) to see the URLs we are creating:</p>
+<pre><code>parallel --dryrun --header : wget '"http://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25.pl?file=gfs.t{<span class="hljs-built_in">time</span>}z.pgrb2.<span class="hljs-number">0</span>p25.f{<span class="hljs-built_in">time</span>}&amp;all_lev=on&amp;var_PWAT=on&amp;leftlon=<span class="hljs-number">0</span>&amp;rightlon=<span class="hljs-number">360</span>&amp;toplat=<span class="hljs-number">90</span>&amp;bottomlat=-<span class="hljs-number">90</span>&amp;<span class="hljs-built_in">dir</span>=%<span class="hljs-number">2</span>Fgfs.<span class="hljs-number">201603</span>{<span class="hljs-built_in">date</span>}{<span class="hljs-built_in">time</span>}"' ::: <span class="hljs-built_in">date</span> {<span class="hljs-number">05</span>..<span class="hljs-number">17</span>} ::: <span class="hljs-built_in">time</span> {<span class="hljs-number">00</span>..<span class="hljs-number">18</span>..<span class="hljs-number">06</span>} ::: hour {<span class="hljs-number">000</span>..<span class="hljs-number">003</span>..<span class="hljs-number">003</span>}
+</code></pre>
+<p>This will print the URLs we'll want - grab one and paste it into a browser to see if it works. It should start downloading a <em>grib2</em> file. If not, double check your syntax. Keep an eye out for the URL string formatting; various shells handle these characters differently.</p>
+<p>To keep the gribs in sorted order for the rest of the process, use the date-hour prediction number as the filename. This will ensure that we can simple re-use the iteration numbers as the output, saving in our <code>raw</code> folder as <code>data/{date}{time}{hour}.grib2</code>. Add this, remove the <code>--dryrun</code> flag, and re-run.</p>
+<pre><code> parallel --header : wget '"http://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25.pl?file=gfs.t{<span class="hljs-built_in">time</span>}z.pgrb2.<span class="hljs-number">0</span>p25.f{<span class="hljs-built_in">time</span>}&amp;all_lev=on&amp;var_PWAT=on&amp;leftlon=<span class="hljs-number">0</span>&amp;rightlon=<span class="hljs-number">360</span>&amp;toplat=<span class="hljs-number">90</span>&amp;bottomlat=-<span class="hljs-number">90</span>&amp;<span class="hljs-built_in">dir</span>=%<span class="hljs-number">2</span>Fgfs.<span class="hljs-number">201603</span>{<span class="hljs-built_in">date</span>}{<span class="hljs-built_in">time</span>}"' -O data/{<span class="hljs-built_in">date</span>}{<span class="hljs-built_in">time</span>}{hour}.grib2 ::: <span class="hljs-built_in">date</span> {<span class="hljs-number">05</span>..<span class="hljs-number">17</span>} ::: <span class="hljs-built_in">time</span> {<span class="hljs-number">00</span>..<span class="hljs-number">18</span>..<span class="hljs-number">06</span>} ::: hour {<span class="hljs-number">000</span>..<span class="hljs-number">003</span>..<span class="hljs-number">003</span>}
+</code></pre>
+<p>If this worked, you'll have a directory of numerically sorted grib files! Open any of these freshly downloaded raster files in a desktop GIS system such as <a href="http://www.qgis.org/">QGIS</a> and you should see the following:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/5084513/12276750/5fc8b3ca-b92c-11e5-8332-9460e5655074.png" alt="image"></p>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
                 </section>
                 <section id="narrative_2">
-                    <h3><strong>NARRATIVE_2</strong></h3>
-                    <p>Hella cold-pressed thundercats, art party messenger bag man bun health goth chartreuse schlitz lomo helvetica marfa gluten-free. DIY keffiyeh sriracha bushwick taxidermy forage, cardigan keytar fanny pack. Mustache banjo narwhal ramps. Distillery pork belly brooklyn, butcher pickled scenester meggings church-key 3 wolf moon hammock hella mustache cray. Trust fund hoodie selfies, tousled pabst selvage disrupt 90's. Vice banjo post-ironic, swag raw denim retro etsy kitsch single-origin coffee cronut fingerstache meggings marfa. Mlkshk forage aesthetic banjo vinyl, occupy tousled VHS flannel brooklyn bespoke offal.</p>
-                    <img class="viz-img" src="img/TEMPLATE_VIZ_3.png">
-                    <p>Helvetica kogi hashtag affogato food truck, gentrify selfies listicle truffaut migas tattooed. Kale chips echo park tousled, bicycle rights waistcoat godard schlitz 3 wolf moon tote bag church-key typewriter semiotics chia messenger bag listicle. Offal church-key fanny pack schlitz 3 wolf moon, art party brooklyn hoodie. Vice viral venmo, swag franzen retro microdosing schlitz mustache occupy knausgaard cronut bespoke blog pork belly. Ethical salvia put a bird on it occupy small batch everyday carry, quinoa messenger bag plaid green juice meggings affogato mixtape raw denim VHS. Cronut vice kale chips bespoke drinking vinegar. Salvia plaid yr truffaut hella.</p>
-                    <p>Hammock letterpress next level direct trade, distillery lomo hashtag health goth 90's salvia chartreuse migas ugh tacos. Put a bird on it pour-over disrupt health goth. Bitters deep v everyday carry distillery, mixtape letterpress microdosing hammock. Tumblr yr hoodie celiac, meggings stumptown jean shorts sustainable aesthetic hella kinfolk. Banh mi banjo bushwick, butcher skateboard brooklyn vice stumptown you probably haven't heard of them. Selvage quinoa sustainable lomo, pitchfork readymade organic trust fund four dollar toast. Brooklyn cold-pressed VHS, fixie leggings master cleanse you probably haven't heard of them tofu.</p>
-                    <p>90's skateboard pug small batch kogi locavore. Cold-pressed gluten-free plaid, flannel lo-fi slow-carb trust fund small batch synth helvetica keffiyeh whatever tofu mumblecore. Fingerstache keffiyeh XOXO banh mi vice shabby chic hella locavore. Wolf locavore cardigan, tattooed salvia pug try-hard echo park yr single-origin coffee migas VHS selfies. Tousled locavore yuccie blog, aesthetic cronut affogato godard XOXO marfa gentrify tacos. Literally brooklyn next level raw denim, cliche 90's franzen. Keffiyeh literally cardigan kale chips cronut.</p>
-                    <p>90's skateboard pug small batch kogi locavore. Cold-pressed gluten-free plaid, flannel lo-fi slow-carb trust fund small batch synth helvetica keffiyeh whatever tofu mumblecore. Fingerstache keffiyeh XOXO banh mi vice shabby chic hella locavore. Wolf locavore cardigan, tattooed salvia pug try-hard echo park yr single-origin coffee migas VHS selfies. Tousled locavore yuccie blog, aesthetic cronut affogato godard XOXO marfa gentrify tacos. Literally brooklyn next level raw denim, cliche 90's franzen. Keffiyeh literally cardigan kale chips cronut.</p>
+                    <h3><strong>Part 3: Geoprocessing</strong></h3>
+                    <p>We are going to repeat each step that we referenced in Part 1, this time in parallel on our 104 input files. Luckily, <code>parallel</code> again handles much of the complication for us. A quick introduction to working with files in parallel. To list each file in our data directory with the <code>.grib2</code> extension, we can run the following command:</p>
+<pre><code><span class="hljs-title">parallel</span> echo {} ::: <span class="hljs-typedef"><span class="hljs-keyword">data</span>/*.grib2</span>
+</code></pre>
+<p>This should list out all the <code>grib2</code>s in your data directory. To list just the base filename:</p>
+<pre><code><span class="hljs-title">parallel</span> echo {/} ::: <span class="hljs-typedef"><span class="hljs-keyword">data</span>/*.grib2</span>
+</code></pre>
+<p>And to list just the filename without the file extension:</p>
+<pre><code><span class="hljs-title">parallel</span> echo {/.} ::: <span class="hljs-typedef"><span class="hljs-keyword">data</span>/*.grib2</span>
+</code></pre>
+<p>We'll use these three abstractions to process our data.</p>
+<h4><a id="Converting_to_global_grib_using_gribdoctor_103"></a>Converting to global grib using <code>gribdoctor</code></h4>
+<p>A quick refresh on usage of this tool (see Part 1 for details):</p>
+<pre><code>gribdoctor smoosh -dev -uw &lt;input&gt;<span class="hljs-class">.grib2</span> &lt;output&gt;<span class="hljs-class">.tif</span>
+</code></pre>
+<p>We want to take each <code>.grib2</code> in our <code>/data</code> directory, perform this operation, and output a <code>.tif</code> file of the same name in our <code>/global</code> directory. Here is the command:</p>
+<pre><code><span class="hljs-label">parallel</span> gribdoctor smoosh -dev -uw {} <span class="hljs-preprocessor">global</span>/{/.}.tif ::: <span class="hljs-preprocessor">data</span><span class="hljs-comment">/*.grib2
+</span></code></pre>
+<p>To deconstruct the above:</p>
+<ul>
+<li><code>gribdoctor smoosh</code> is the command used to undertake geoprocessing;</li>
+<li><code>-dev -uw</code> are input options for <code>gribdoctor</code></li>
+<li><code>data/*.grib2</code> is the input directory. Each file in this directory will run in <code>parallel</code> as <code>{}</code>; and</li>
+<li><code>global/{/.}.tif</code> is the output filename (which is each input base filename without the extension - after which we add on the <code>/global</code> directory and the <code>.tif</code> extension.</li>
+</ul>
+<p>After running <code>gribdoctor</code>, you should have a set files that look like the following (open them in a GIS or other <code>GeoTIFF</code> viewer):</p>
+<p><img src="https://cloud.githubusercontent.com/assets/5084513/12286506/6bae416c-b979-11e5-8eeb-31fa137ca8b1.png" alt="image"></p>
+<h4><a id="Clip_to_reasonable_latitudes_127"></a>Clip to reasonable latitudes</h4>
+<p>We'll be adding this data to a web map in web mercator, which will overly stretch the higher latitudes to take up the bulk of our video size. To make the presentation neater, let's trim off the data at extreme latitudes using <code>rio clip</code>, a <a href="https://github.com/mapbox/rasterio">rasterio</a> command.</p>
+<p>We want to clip to West: -180.0, South: -70.0, East: 180.0, North: 70.0. Here again, is the command in <code>parallel</code>:</p>
+<pre><code>parallel rio clip {} clip/{/} --bounds -<span class="hljs-number">180.0</span> -<span class="hljs-number">70.0</span> <span class="hljs-number">180.0</span> <span class="hljs-number">70.0</span>  ::: global<span class="hljs-comment">/*.tif
+</span></code></pre>
+<p>Note that this time, we can simply use <code>{/}</code> as the input and outputs are both <code>.tif</code>s. Your <code>clip/</code> directory should have images like this:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/5084513/12313441/482599ea-ba1c-11e5-818f-7fa095fde032.png" alt="image"></p>
+
+<br>
+<h4><a id="Warp_to_Web_Mercator_141"></a>Warp to Web Mercator</h4>
+<p>Mapbox GL JS utilizes the web mercator projection. In order to integrate the PWAT imagery with street and terrain data, we will need to warp our input data into this projection. Let's also take this opportunity to make sure our image dimensions are divisible by two, which is neccesary for properly encoding into video.</p>
+<p>The dimensions of your input data <em>after</em> being warped to web mercator should be ~ 2705 x 1494. This gives us an aspect ratio of:</p>
+<pre><code><span class="hljs-number">2705</span> / <span class="hljs-number">1495</span> = ~<span class="hljs-number">1.8</span>:<span class="hljs-number">1</span>
+</code></pre>
+<p>Let's say we want our eventual output video to be 2048 pixels wide:</p>
+<pre><code><span class="hljs-number">2048</span> * (<span class="hljs-number">1</span> / <span class="hljs-number">1.8</span>) = <span class="hljs-number">1138</span>px
+</code></pre>
+<p>Giving us desired output dimensions of 2048 x 1138. We then specify this in the <code>gdalwarp</code> command as <code>-ts</code>. Here it is in <code>parallel</code>:</p>
+<pre><code>parallel gdalwarp {} mercator/{/} -t_srs EPSG:<span class="hljs-number">3857</span> -co COMPRESS=DEFLATE -r bilinear -ts <span class="hljs-number">2048</span> <span class="hljs-number">1138</span> ::: clip<span class="hljs-comment">/*.tif
+</span></code></pre>
+<p>Here's an example output file:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/5084513/12313499/cd5c8de4-ba1c-11e5-8ddc-dc884dd94291.png" alt="image"></p>
+
+<br>    
+<h4><a id="Colorize_PWAT_166"></a>Colorize PWAT</h4>
+<p>Let's colorize our data. Take the color ramp that you created in the first tutorial, and apply it on all of the warped files:</p>
+<pre><code>parallel gdaldem <span class="hljs-built_in">color</span>-relief {} <span class="hljs-built_in">color</span>-ramp.txt <span class="hljs-built_in">color</span>/{/} ::: mercator/*.tif
+</code></pre>
+<p>Now, you should essentially have a set of <code>tifs</code> similar to what we'll have in our final product. Take the time now to tweak your color ramp as you see fit.</p>
+<p><img src="https://cloud.githubusercontent.com/assets/5084513/12313587/ac86d808-ba1d-11e5-9405-e1597f9db8a6.png" alt="image"></p>
+
+    
+<br><h4><a id="Convert_to_png_178"></a>Convert to png</h4>
+<p>In order to use this in an animation, we need to convert them into a format that <code>ffmpeg</code> can recognize. In this case, we'll use <code>png</code> - here is the command:</p>
+<pre><code>parallel rio <span class="hljs-built_in">convert</span> {} pngs/{/.}.png --<span class="hljs-built_in">format</span> PNG ::: <span class="hljs-built_in">color</span>/*.tif
+</code></pre>
+    
+<br>
                     <!-- Code Snippet: R -->
                     <pre><code>##Loop through data
   coords <- data.frame() ##place holder
@@ -153,12 +242,118 @@ for subdir, dirs, files in os.walk(rootdir):
   }</code></pre>
                 </section>
                 <section id="narrative_3">
-                    <h3><strong>NARRATIVE_3</strong></h3>
-                    <p>Asymmetrical seitan kombucha butcher, franzen swag cred salvia echo park man bun etsy tote bag church-key. Squid waistcoat readymade microdosing, man braid venmo actually you probably haven't heard of them bushwick normcore hammock drinking vinegar kogi. Truffaut wolf helvetica venmo, irony flannel cold-pressed pop-up forage polaroid fashion axe four loko. YOLO aesthetic pour-over, plaid keytar forage XOXO hammock shabby chic actually yr shoreditch food truck selfies. Brooklyn helvetica gochujang celiac. Ennui mumblecore locavore lumbersexual sartorial wolf, craft beer disrupt drinking vinegar 3 wolf moon semiotics. Cronut meh VHS, stumptown cray quinoa ennui single-origin coffee tousled.</p>
-                    <p>Green juice 90's mumblecore, pop-up cray yr roof party lomo XOXO cardigan thundercats hammock. Semiotics yuccie austin umami leggings. Tacos tilde ennui, cliche knausgaard sartorial irony normcore. Four dollar toast heirloom pug, swag roof party locavore deep v cold-pressed. Deep v yuccie humblebrag asymmetrical, artisan blog pabst roof party sriracha typewriter chia tattooed biodiesel thundercats retro. Beard hoodie meditation 90's, vegan crucifix keytar yr drinking vinegar. Pork belly banjo artisan microdosing XOXO.</p>
-                    <img class="viz-img" src="img/TEMPLATE_VIZ_4.png">
-                    <p>Lomo kickstarter blog, ethical seitan chia microdosing. Microdosing tumblr hella lumbersexual readymade, synth slow-carb. Food truck stumptown VHS cornhole 90's. Intelligentsia cronut tofu, jean shorts knausgaard polaroid irony seitan. Hoodie salvia chambray austin fixie, chicharrones chillwave post-ironic cardigan. Gastropub messenger bag street art drinking vinegar, listicle next level skateboard. IPhone waistcoat everyday carry fap skateboard synth, 3 wolf moon tote bag marfa polaroid gentrify gluten-free yr.</p>
-                    <p>Cardigan kombucha photo booth, stumptown wolf knausgaard tote bag art party intelligentsia four loko. Roof party gluten-free kickstarter bicycle rights, meditation dreamcatcher lo-fi shabby chic. Jean shorts cold-pressed organic umami. Leggings retro actually, pug plaid synth readymade selvage jean shorts cray post-ironic knausgaard polaroid. Beard normcore sartorial celiac lumbersexual mustache. Narwhal distillery selfies, trust fund literally before they sold out actually pinterest beard kogi small batch bespoke cronut banjo hashtag. Vinyl pour-over locavore slow-carb, authentic chartreuse paleo kogi vegan cred normcore echo park sustainable before they sold out.</p>
+                    <h3><strong>Part 4: Animate</strong></h3>
+                    <p>To animate this set of <code>png</code>s we'll use the <code>ffmpeg</code> library. To encode this dataset in a way that maintains a high quality file while keeping the size down requires customization of the command, and a “double-pass” encoding technique. To keep this simpler, we've put this command into a bash script, and made the parameters that you may want to tweak into variables - the input <code>dir</code> and output <code>movie</code>, <code>bitrate</code>, and <code>framerate</code>:</p>
+<pre><code class="language-bash"><span class="hljs-shebang">#!/usr/bin/env bash
+</span>
+dir=png
+movie=output/pwat.mp4
+bitrate=<span class="hljs-number">4000</span>k
+framerate=<span class="hljs-number">12</span>
+ffmpeg -r <span class="hljs-variable">$framerate</span> -y <span class="hljs-operator">-f</span> image2 -pattern_<span class="hljs-built_in">type</span> glob -i <span class="hljs-string">"<span class="hljs-variable">$dir</span>/*.png"</span> -c:v libx264 -preset slow -b:v <span class="hljs-variable">$bitrate</span> -pass <span class="hljs-number">1</span> -c:a libfdk_aac -b:a <span class="hljs-number">0</span>k <span class="hljs-operator">-f</span> mp4 -r <span class="hljs-variable">$framerate</span> -profile:v high -level <span class="hljs-number">4.2</span> -pix_fmt yuv420p -movflags +faststart /dev/null &amp;&amp; \
+ffmpeg -r <span class="hljs-variable">$framerate</span> <span class="hljs-operator">-f</span> image2 -pattern_<span class="hljs-built_in">type</span> glob -i <span class="hljs-string">"<span class="hljs-variable">$dir</span>/*.png"</span> -c:v libx264 -preset slow -b:v <span class="hljs-variable">$bitrate</span> -pass <span class="hljs-number">2</span> -c:a libfdk_aac -b:a <span class="hljs-number">0</span>k -r <span class="hljs-variable">$framerate</span> -profile:v high -level <span class="hljs-number">4.2</span> -pix_fmt yuv420p -movflags +faststart <span class="hljs-variable">$movie</span>
+</code></pre>
+<p>View the created animation to see how it looks. You can adjust the speed by modifying the framerate: lower framerate = slower. If the animation is too large (I try to stay under 5mb), you can lower the bitrate.</p>
+    
+<br>
+<h4><a id="Style_your_reference_data_202"></a>Style your reference data</h4>
+<p>Let's first modify the reference data in the style that we used for our visualization in <a href="http://commercedataservice.github.io/tutorial_mapbox_part1/">Part 1</a>. Navigate to <a href="https://www.mapbox.com/studio/styles/">https://www.mapbox.com/studio/styles/</a>, find your style, and duplicate it:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/5084513/13894313/9b06ea62-ed23-11e5-93f0-5a410edd3ffb.png" alt="image"></p>
+<p>Then, edit this copied style. At the very least, we need to:</p>
+<ol>
+<li>Delete the static pwat layer we used in part 1; and</li>
+<li>Change the water + background colors to match our video.</li>
+</ol>
+<p>BEFORE deleting the layer, move our previous pwat layer to the back to “stand in” for our video while we still - drag it to the bottom of the layers panel, <em>right</em> above “Background.”</p>
+<p>Take note of the <em>first</em> color category you used in the colorization process. In my case, I had:</p>
+<pre><code><span class="hljs-number">10.0</span> <span class="hljs-number">23</span> <span class="hljs-number">31</span> <span class="hljs-number">39</span>
+</code></pre>
+<p>Values 10.0 and under are the RGB value 23, 31, 39. Let's make this our water (fill) and background color:
+<img src="https://cloud.githubusercontent.com/assets/5084513/13894412/b3028544-ed24-11e5-8ecf-0fd344ccf8d0.png" alt="image"></p>
+<p>Since our animation will be <em>under</em> the map, let's also make the water transparent - I am starting with 0.25.</p>
+<p>You may also want to remove certain features, and change the style of others. I like to keep terrain visible, as I find the interplay between mountain ranges and pwat fascinating:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/5084513/13924322/18f7cb0c-ef41-11e5-9d02-1ba23b44f6fa.gif" alt="inter"></p>
+<p>Once you are done styling, click publish, and save your style url. Don't worry - you can edit your style and access its url at any time.</p>
+<h4><a id="Add_your_data_to_the_map_229"></a>Add your data to the map</h4>
+<p>We'll be using <a href="https://www.mapbox.com/mapbox-gl-js/api/">Mapbox GL JS</a> to create an interactive animated map with our data. First, create an html document, and copy in the skeleton html for a Mapbox GL map:</p>
+<pre><code class="language-code"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">'utf-8'</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">'viewport'</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">'initial-scale=1,maximum-scale=1,user-scalable=no'</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">'https://api.tiles.mapbox.com/mapbox-gl-js/v0.11.1/mapbox-gl.js'</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">'https://api.tiles.mapbox.com/mapbox-gl-js/v0.11.1/mapbox-gl.css'</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">'stylesheet'</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">style</span>&gt;</span><span class="css">
+        <span class="hljs-tag">body</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; }</span>
+        <span class="hljs-id">#map</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value">absolute</span></span>; <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">bottom</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"><span class="hljs-number">100%</span></span></span>; }</span>
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">'map'</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="actionscript">
+<span class="hljs-comment">// code goes here!</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<p>Next, we'll create a GL map in the <code>#map</code> div, and add our style to it. Within the <code>&lt;script&gt;&lt;/script&gt;</code> tags, add:</p>
+<pre><code class="language-Javascript">
+<span class="hljs-comment">// mapboxgl.accessToken = '&lt;your access token - acquire from https://www.mapbox.com/studio/account&gt;';</span>
+
+<span class="hljs-keyword">var</span> map = <span class="hljs-keyword">new</span> mapboxgl.Map({
+    container: <span class="hljs-string">'map'</span>, <span class="hljs-comment">// container id</span>
+    style: <span class="hljs-string">'mapbox://styles/dnomadb/cilybj8yj00a99km8o74phrfp'</span>, <span class="hljs-comment">//stylesheet url from above</span>
+    center: [
+              <span class="hljs-number">0</span>,
+              <span class="hljs-number">0</span>
+            ], <span class="hljs-comment">// starting position</span>
+    zoom: <span class="hljs-number">1.6</span> <span class="hljs-comment">// starting zoom</span>
+});
+</code></pre>
+<p>Lets also add a contol for our map:</p>
+<pre><code><span class="hljs-built_in">map</span>.addControl(<span class="hljs-keyword">new</span> mapboxgl.Navigation());
+</code></pre>
+<p>If you view your map, you should see something pretty bare bones:
+<img src="https://cloud.githubusercontent.com/assets/5084513/13925430/80464276-ef45-11e5-9d0d-adc21966e19e.png" alt="image"></p>
+<p>Let's add our video! For convenience, move the video to the same directory as your <code>html</code> file from above. To insert this into our map, we'll need to specify 3 main things:</p>
+<ol>
+<li>When the video should be added to the map. In our case, we'll want to do it <em>after</em> our stylesheed loads so that it is accessible.</li>
+<li>Where to add the video spatially. We'll be using our clip bounds of <code>-180.0 -70.0 180.0 70.0</code> as the bounds for the video.</li>
+<li>Where to add the video in terms of z-index. We want to add our video directly under the style's <code>hillshade</code> layer.</li>
+</ol>
+<p>Here's how to do these three things:</p>
+<pre><code class="language-Javascript">map.once(<span class="hljs-string">'style.load'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// once the style loads, do this</span>
+    map.batch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-comment">// add our video source</span>
+        map.addSource(<span class="hljs-string">'storm-source'</span>, {
+            type: <span class="hljs-string">'video'</span>,
+            urls: [
+                <span class="hljs-string">'pwat.mp4'</span> <span class="hljs-comment">// path to our video</span>
+            ],
+            coordinates: [
+                [ -<span class="hljs-number">180</span>, <span class="hljs-number">70</span> ],
+                [ <span class="hljs-number">180</span>, <span class="hljs-number">70</span> ],
+                [ <span class="hljs-number">180</span>, -<span class="hljs-number">70</span> ],
+                [ -<span class="hljs-number">180</span>, -<span class="hljs-number">70</span> ]
+            ] <span class="hljs-comment">// the coordinates to which your data is clipped:</span>
+        });
+        <span class="hljs-comment">// add this layer to the map</span>
+        map.addLayer({
+            type: <span class="hljs-string">'raster'</span>,
+            id: <span class="hljs-string">'storm-layer'</span>,
+            source: <span class="hljs-string">'storm-source'</span>,
+            paint: {
+              <span class="hljs-string">'raster-opacity'</span>: <span class="hljs-number">0.75</span>
+            }
+        },
+        <span class="hljs-string">'hillshade_shadow_faint'</span>); <span class="hljs-comment">// "after" our lowest hillshade layer</span>
+    });
+});
+</code></pre>
+<p>Add this to your script, and your map should be ready to go!</p>
                 </section>
                 </div><!-- Content -->
                 <div id='sidebar' class="hidden-xs hidden-sm col-lg-2 col-md-2"><!-- Sidebar -->
@@ -177,15 +372,20 @@ for subdir, dirs, files in os.walk(rootdir):
                                 <li><a href=""><i class="fa fa-facebook-square fa-lg"></i></a></li>
                             </ul>
                         </li>
-                        <li><a href="#intro">INTRODUCTION</a></li>
-                        <li><a href="#narrative_1">NARRATIVE_1</a></li>
-                        <li><a href="#narrative_2">NARRATIVE_2</a></li>
-                        <li><a href="#narrative_3">NARRATIVE_3</a></li>
+                        <li><a href="#intro">Introduction</a></li>
+                        <li><a href="#narrative_1">Getting Started</a></li>
+                        <li><a href="#narrative_2">Part 3: Geoprocessing</a></li>
+                        <li><a href="#narrative_3">Part 4: Animate</a></li>
                     </ul>
                 </div><!-- Sidebar -->
             </div><!-- Row -->
         </div><!-- Container-fluid -->
     </div>
 
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
 </body>
 </html>
